@@ -1,20 +1,32 @@
 <?php
 include_once "./includes/header.php";
-include_once "./includes/navbar.php";
 ?>
 
-<div class="py-3 p-sm-5">
-  <?php
-  $page = $_GET['page'] ?? 'home';
 
-  // switch ($page) {
-  //   case 'about':
-  //     include "./pages/about.php";
-  //     break;
-  //   default:
-  //     include "./pages/home.php";
-  // }
-  ?>
+<div class="drawer lg:drawer-open">
+  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col items-center justify-center">
+    <?php
+    $page = $_GET['page'] ?? 'home';
+
+    // switch ($page) {
+    //   case 'about':
+    //     include "./pages/about.php";
+    //     break;
+    //   default:
+    //     include "./pages/home.php";
+    // }
+    ?>
+    <label for="my-drawer-3" class="btn drawer-button lg:hidden">
+      Open drawer
+    </label>
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+    <?php
+    include_once "./includes/sidebar.php";
+    ?>
+  </div>
 </div>
 
 <?php
