@@ -5,18 +5,19 @@ include_once "./includes/header.php";
 
 <div class="drawer lg:drawer-open">
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col items-center justify-center">
+  <div class="drawer-content flex flex-col items-start justify-start lg:p-8">
     <?php
     $page = $_GET['page'] ?? 'home';
 
-    // switch ($page) {
-    //   case 'about':
-    //     include "./pages/about.php";
-    //     break;
-    //   default:
-    //     include "./pages/home.php";
-    // }
+    switch ($page) {
+      case 'about':
+        include "./pages/about.php";
+        break;
+      default:
+        include "./pages/home/home.php";
+    }
     ?>
+
     <label for="my-drawer-3" class="btn drawer-button lg:hidden">
       Open drawer
     </label>

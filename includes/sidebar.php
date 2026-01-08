@@ -1,11 +1,20 @@
 <?php
-// 
+// Determine current route/page (fallback to 'home' if not set)
+$current_page = $_GET['page'] ?? 'home';
+
+// Helper to add highlight class if active
+function is_active_class($page_name, $current_page)
+{
+    return $page_name === $current_page ? 'bg-neutral text-neutral-content' : '';
+}
+
+// if (in_array($current_page, ['rsp', 'spms', 'lnd', 'rr'])) echo 'open'
 ?>
 <ul class="menu bg-base-200 min-h-full w-80 p-4">
     <div class="navbar bg-base-100 shadow-sm mb-2">
         <a class="btn btn-ghost text-xl">TeamHR</a>
     </div>
-    <li><a>Dashboard</a></li>
+    <li><a class="<?php echo is_active_class('home', $current_page) ?>">Dashboard</a></li>
     <li>
         <details>
             <summary>Core Systems</summary>
