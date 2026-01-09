@@ -17,7 +17,6 @@ include_once "./includes/header.php";
         include "./pages/home/home.php";
     }
     ?>
-
     <label for="my-drawer-3" class="btn drawer-button lg:hidden">
       Open drawer
     </label>

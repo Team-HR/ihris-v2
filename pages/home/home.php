@@ -26,81 +26,49 @@
                 </h1>
             </div>
 
+            <?php
+            // Determine which sub-tab is active
+            $subpage = $_GET['subpage'] ?? 'user-details';
+
+            // Helper for join-item active class
+            function sub_active_class($val, $subpage)
+            {
+                return $val === $subpage ? 'btn-active' : '';
+            }
+            ?>
             <div class="card w-full bg-base-100 border border-base-content/10">
                 <div class="card-body">
                     <div class="join">
-                        <button class="btn join-item btn-ghost btn-active">User Details</button>
-                        <button class="btn join-item btn-ghost">PDS</button>
-                        <button class="btn join-item btn-ghost">Competencies</button>
-                        <button class="btn join-item btn-ghost">Calendar</button>
-                        <button class="btn join-item btn-ghost">Appointment</button>
+                        <a href="?page=home&subpage=user-details" class="btn join-item btn-ghost <?php echo sub_active_class('user-details', $subpage); ?>">User Details</a>
+                        <a href="?page=home&subpage=pds" class="btn join-item btn-ghost <?php echo sub_active_class('pds', $subpage); ?>">PDS</a>
+                        <a href="?page=home&subpage=competencies" class="btn join-item btn-ghost <?php echo sub_active_class('competencies', $subpage); ?>">Competencies</a>
+                        <a href="?page=home&subpage=calendar" class="btn join-item btn-ghost <?php echo sub_active_class('calendar', $subpage); ?>">Calendar</a>
+                        <a href="?page=home&subpage=appointment" class="btn join-item btn-ghost <?php echo sub_active_class('appointment', $subpage); ?>">Appointment</a>
                     </div>
                     <div class="divider m-0"></div>
 
-
-                    <div class="flex sm:flex-row flex-col gap-4">
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Assigned Office</legend>
-                            <div class="label text-wrap">HUMAN RESOURCE MANAGEMENT AND DEVELOPMENT OFFICE</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Position</legend>
-                            <div class="label text-wrap">ADMINISTRATIVE OFFICER IV HUMAN RESOURCE MANAGEMENT OFFICER II</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Nature of Assignment</legend>
-                            <div class="label text-wrap">---</div>
-                        </fieldset>
-                    </div>
-                    <div class="flex sm:flex-row flex-col gap-4">
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Salary Grade</legend>
-                            <div class="label text-wrap">15</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Level</legend>
-                            <div class="label text-wrap">2</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Category</legend>
-                            <div class="label text-wrap">ADMINISTRATIVE</div>
-                        </fieldset>
-                    </div>
-                    <div class="flex sm:flex-row flex-col gap-4">
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">ID</legend>
-                            <div class="label text-wrap">9</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">Gender</legend>
-                            <div class="label text-wrap">Male</div>
-                        </fieldset>
-                        <fieldset class="fieldset sm:w-4/12">
-                            <legend class="fieldset-legend">IPCR Started in: </legend>
-                            <div class="label text-wrap">---</div>
-                        </fieldset>
-                    </div>
+                    <?php
+                    // Display subpage content
+                    switch ($subpage) {
+                        case 'pds':
+                            echo '<div class="p-4 text-lg">PDS Section Coming Soon...</div>';
+                            break;
+                        case 'competencies':
+                            echo '<div class="p-4 text-lg">Competencies Section Coming Soon...</div>';
+                            break;
+                        case 'calendar':
+                            echo '<div class="p-4 text-lg">Calendar Section Coming Soon...</div>';
+                            break;
+                        case 'appointment':
+                            echo '<div class="p-4 text-lg">Appointment Section Coming Soon...</div>';
+                            break;
+                        case 'user-details':
+                        default:
+                            include "./pages/home/components/UserDetails.php";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- <div class="flex gap-6 w-full ">
-            <div class="w-full max-w-36 h-36 bg-neutral text-neutral-content flex items-center justify-center rounded">
-                <span class="text-4xl">
-                    K
-                </span>
-            </div>
-
-            <div class="w-full">
-                <h1 class="text-2xl font-black">Kim Harold V Pinanonang</h1>
-
-                <div class="flex mt-2">
-                    <div class="max-w-36 bg-base-300 p-2 w-full">
-                        Helo
-                    </div>
-                </div>
-
-            </div>
-        </div> -->
