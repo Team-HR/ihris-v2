@@ -1,7 +1,7 @@
 <?php
 include_once "./includes/header.php";
-?>
 
+?>
 
 <div class="drawer lg:drawer-open">
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
