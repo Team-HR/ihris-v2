@@ -72,14 +72,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    fetch('/?api=user&empid=3977')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-</script>
