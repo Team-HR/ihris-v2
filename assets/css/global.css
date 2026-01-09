@@ -70,3 +70,7 @@
   --depth: 1;
   --noise: 0;
 }
+
+html {
+  @apply bg-base-300/90;
+}
