@@ -1,7 +1,7 @@
 <?php
-include_once 'config/Database.php';
+include_once 'backend/config/Database.php';
 
-class Employee
+class EmployeeListController
 {
     private $conn;
 
