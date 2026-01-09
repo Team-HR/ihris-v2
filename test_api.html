@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <script src="assets/js/api.js"></script>
+</head>
+
+<body>
+    <h1>API Test</h1>
+    <div id="output"></div>
+    <script>
+        (async () => {
+            const output = document.getElementById('output');
+            try {
+                output.innerHTML += '<p>Testing GET /api/employees...</p>';
+                // Assuming api/employees.php returns JSON. 
+                // We might get a 404 or error if the backend isn't fully set up, 
+                // but we want to see if the JS wrapper itself functions.
+                const result = await api.get('api/employees');
+                console.log('GET Result:', result);
+                output.innerHTML += `<p>Result: ${JSON.stringify(result)}</p>`;
+            } catch (error) {
+                console.error('Test Error:', error);
+                output.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        })();
+    </script>
+</body>
+
+</html>
