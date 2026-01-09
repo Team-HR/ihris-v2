@@ -10,16 +10,7 @@
  *  /api/employees
  * 
  * USAGE (e.g. in js):
- * <script>
- *    fetch('/api/employees?empid=3977')
- *        .then(response => response.json())
- *        .then(data => {
- *            console.log(data);
- *        })
- *        .catch(error => {
- *            console.error('Error:', error);
- *        });
- * </script>
+ * See API Wrapper in README.md from assets/js/README.md
  * 
  */
 
