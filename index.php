@@ -13,6 +13,9 @@ include_once "./includes/header.php";
       case 'about':
         include "./pages/about.php";
         break;
+      case 'setup':
+        include "./pages/setup/setup.php";
+        break;
       default:
         include "./pages/home/home.php";
     }

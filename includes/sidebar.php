@@ -16,7 +16,7 @@ function is_active_class($page_name, $current_page)
     </div>
 
     <div class="w-full px-2 mt-1">
-        <li><a class="<?php echo is_active_class('home', $current_page) ?>">Dashboard</a></li>
+        <li><a class="<?php echo is_active_class('home', $current_page) ?>" href="?page=home">Dashboard</a></li>
         <li>
             <details>
                 <summary>Core Systems</summary>
@@ -61,5 +61,6 @@ function is_active_class($page_name, $current_page)
                 </ul>
             </details>
         </li>
+        <li><a class="<?php echo is_active_class('setup', $current_page) ?>" href="?page=setup">Setup</a></li>
     </div>
 </ul>

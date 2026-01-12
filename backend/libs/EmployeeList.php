@@ -36,4 +36,29 @@ class EmployeeList
             return [];
         }
     }
+
+    public function updateEmployee($empid, $data)
+    {
+        if (empty($data)) {
+            return false;
+        }
+
+        $fields = [];
+        foreach ($data as $key => $value) {
+            $fields[] = "$key = :$key";
+        }
+
+        $query = "UPDATE employee_list SET " . implode(', ', $fields) . " WHERE empid = :empid";
+
+        $data['empid'] = $empid;
+
+        try {
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute($data);
+        } catch (PDOException $e) {
+            // Log error or handle it as needed
+            // echo "Error: " . $e->getMessage();
+            throw $e;
+        }
+    }
 }
