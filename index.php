@@ -6,6 +6,13 @@ include_once "./includes/header.php";
 <div class="drawer lg:drawer-open">
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col items-start justify-start lg:p-8">
+
+    <div class="lg:hidden w-full">
+      <?php
+      include "./includes/navbar.php";
+      ?>
+    </div>
+
     <?php
     $page = $_GET['page'] ?? 'home';
 
@@ -17,9 +24,8 @@ include_once "./includes/header.php";
         include "./pages/home/home.php";
     }
     ?>
-    <label for="my-drawer-3" class="btn drawer-button lg:hidden">
-      Open drawer
-    </label>
+
+
   </div>
   <div class="drawer-side">
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
