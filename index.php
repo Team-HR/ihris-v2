@@ -14,17 +14,22 @@ include_once "./includes/header.php";
     </div>
 
     <?php
-    $page = $_GET['page'] ?? 'home';
+    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-    switch ($page) {
-      case 'about':
-        include "./pages/about.php";
+    switch ($path) {
+      case 'employee/list':
+        include './pages/employees/EmployeeList.php';
         break;
-      default:
-        include "./pages/home/home.php";
-    }
-    ?>
 
+      case 'about':
+        include './pages/about.php';
+        break;
+
+      default:
+        include './pages/home/home.php';
+    }
+
+    ?>
 
   </div>
   <div class="drawer-side">
