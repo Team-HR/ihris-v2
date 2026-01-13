@@ -6,8 +6,7 @@
 
         <div class="sm:p-8 p-2 relative">
 
-
-            <div class="block sm:mt-10 mt-2 mb-4">
+            <div class="block sm:mt-4 mt-2 mb-4">
                 <div class="flex sm:flex-row flex-col sm:gap-4 gap-1 sm:items-center">
                     <h1 class="sm:text-3xl text-xl font-bold">Setup</h1>
                 </div>
@@ -18,7 +17,7 @@
             </div>
             <?php
             // Determine which sub-tab is active
-            $subpage = $_GET['subpage'] ?? 'offices';
+            $subpage = $_GET['subpage'] ?? 'plantilla';
 
             // Helper for join-item active class
             function sub_active_class($val, $subpage)
@@ -29,6 +28,7 @@
             <div class="card w-full bg-base-100 border border-base-content/10">
                 <div class="card-body">
                     <div class="join">
+                        <a href="?page=setup&subpage=plantilla" class="btn join-item btn-ghost <?php echo sub_active_class('plantilla', $subpage); ?>">Plantilla</a>
                         <a href="?page=setup&subpage=offices" class="btn join-item btn-ghost <?php echo sub_active_class('offices', $subpage); ?>">Offices</a>
                         <a href="?page=setup&subpage=positions" class="btn join-item btn-ghost <?php echo sub_active_class('positions', $subpage); ?>">Positions</a>
                         <a href="?page=setup&subpage=signatories" class="btn join-item btn-ghost <?php echo sub_active_class('signatories', $subpage); ?>">Signatories</a>
@@ -38,6 +38,9 @@
                     <?php
                     // Display subpage content
                     switch ($subpage) {
+                        case 'plantilla':
+                            include "./pages/setup/components/plantilla.php";
+                            break;
                         case 'offices':
                             include "./pages/setup/components/offices.php";
                             break;
