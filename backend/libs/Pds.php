@@ -158,8 +158,8 @@ class Pds
             -- `agency_employee_no` = :agency_employee_no, 
             -- `tinno` = :tinno, 
             -- `tin_no` = :tin_no, 
-            -- `contact_person` = :contact_person, 
-            -- `contact_no` = :contact_no, 
+            `contact_person` = :contact_person, 
+            `contact_no` = :contact_no, 
             -- `reshouseno` = :reshouseno, 
             -- `resstreet` = :resstreet, 
             -- `ressubdivision` = :ressubdivision, 
@@ -193,7 +193,8 @@ class Pds
             `gsisidno` = :gsisidno, 
             `pagibigno` = :pagibigno, 
             `philhealthno` = :philhealthno, 
-            `sssno` = :sssno
+            `sssno` = :sssno,
+            `tinno` = :tinno
             WHERE `empid` = :empid";
 
         try {

@@ -1,5 +1,8 @@
 <div class="p-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="col-span-full">
+            <h2 class="font-bold text-lg mb-2">Personal Information</h2>
+        </div>
         <div class="form-control">
             <label class="label">
                 <span class="label-text">Last Name</span>
@@ -83,9 +86,17 @@
             </label>
             <input type="text" id="bloodtype" class="input input-bordered w-full" />
         </div>
-
-        <div class="col-span-full mt-4">
-            <h1 class="text-xl font-bold">Address</h1>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Contact Person</span>
+            </label>
+            <input type="text" id="contact_person" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Contact No.</span>
+            </label>
+            <input type="text" id="contact_no" class="input input-bordered w-full" />
         </div>
 
         <!-- Residential Address -->
@@ -165,6 +176,8 @@
                 _id('height').value = data.height || '';
                 _id('weight').value = data.weight || '';
                 _id('bloodtype').value = data.bloodtype || '';
+                _id('contact_person').value = data.contact_person || '';
+                _id('contact_no').value = data.contact_no || '';
                 _id('residential_address').value = data.residential_address || '';
                 _id('residential_zipcode').value = data.residential_zipcode || data.reszipcode || '';
                 _id('residential_telno').value = data.residential_telno || '';
@@ -222,6 +235,8 @@
                 weight: _id('weight').value,
                 bloodtype: _id('bloodtype').value,
                 blood_type: _id('bloodtype').value,
+                contact_person: _id('contact_person').value,
+                contact_no: _id('contact_no').value,
                 residential_address: _id('residential_address').value,
                 residential_zipcode: _id('residential_zipcode').value,
                 reszipcode: _id('residential_zipcode').value,

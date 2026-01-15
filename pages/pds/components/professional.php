@@ -24,6 +24,12 @@
             </label>
             <input type="text" id="sssno" class="input input-bordered w-full" />
         </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">TIN No.</span>
+            </label>
+            <input type="text" id="tinno" class="input input-bordered w-full" />
+        </div>
     </div>
 </div>
 <div class="mt-4 flex justify-end">
@@ -44,6 +50,7 @@
                 _id('pagibigno').value = data.pagibigno || '';
                 _id('philhealthno').value = data.philhealthno || '';
                 _id('sssno').value = data.sssno || '';
+                _id('tinno').value = data.tinno || '';
             }
         } catch (e) {
             console.error("Error fetching PDS data", e);
@@ -56,11 +63,12 @@
                 pagibigno: _id('pagibigno').value,
                 philhealthno: _id('philhealthno').value,
                 sssno: _id('sssno').value,
+                tinno: _id('tinno').value,
             };
             try {
                 const res = await api.put(`/api/pds?empid=${empid}&type=professional`, payload);
                 console.log("Saved:", res);
-                alert("Personal information saved successfully!");
+                alert("Professional information saved successfully!");
             } catch (e) {
                 console.error("Error saving PDS data", e);
                 alert("Failed to save data.");
