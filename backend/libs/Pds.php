@@ -25,6 +25,20 @@ class Pds
         }
     }
 
+    public function getFamily($empid)
+    {
+        $query = "SELECT * FROM `employee_family_background` WHERE `empid` = :empid";
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(['empid' => $empid]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result ?: [];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
+    }
+
     public function updatePersonal($empid, $data)
     {
         $query = "UPDATE `employee_list` SET 
@@ -98,16 +112,25 @@ class Pds
         }
     }
 
-
     public function updateFamily($empid, $data)
     {
         $query = "UPDATE `employee_family_background` SET 
             `spouse_lname` = :spouse_lname, 
             `spouse_fname` = :spouse_fname, 
             `spouse_mname` = :spouse_mname, 
-            `spouseextname` = :spouse_extname
+            `spouseextname` = :spouseextname,
+            `occupation` = :occupation,
+            `employer_name` = :employer_name,
+            `business_address` = :business_address,
+            `s_telephone_no` = :s_telephone_no,
+            `father_lname` = :father_lname,
+            `father_fname` = :father_fname,
+            `father_mname` = :father_mname,
+            `fatherextname` = :fatherextname,
+            `mother_lname` = :mother_lname,
+            `mother_fname` = :mother_fname,
+            `mother_mname` = :mother_mname
             WHERE `empid` = :empid";
-
         try {
             $stmt = $this->conn->prepare($query);
             $data['empid'] = $empid;

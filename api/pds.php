@@ -27,7 +27,13 @@ try {
                 exit;
             }
 
-            $pds = $pds->getPds($empid);
+            $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($type === 'family') {
+                $pds = $pds->getFamily($empid);
+            } else {
+                $pds = $pds->getPds($empid);
+            }
 
             if ($pds) {
                 echo json_encode($pds);
