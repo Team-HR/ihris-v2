@@ -42,7 +42,7 @@ try {
             http_response_code(400);
             echo json_encode(['error' => 'Missing empid parameter']);
         }
-    } else if ($method === 'PUT') {
+    } else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
         // Parse input stream for PUT data
         $input = json_decode(file_get_contents('php://input'), true);
 
@@ -61,18 +61,18 @@ try {
             exit;
         }
 
-        $type = filter_input(INPUT_GET, 'type', FILTER_DEFAULT);
-        $success = false;
+        $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        $success = false;
         if ($type === 'professional') {
             $success = $pds->updateProfessional($empid, $input);
         } else {
-            // Default to bio or explicit check for 'bio'
+            // Default to Bio/Personal info
             $success = $pds->updateBio($empid, $input);
         }
 
         if ($success) {
-            echo json_encode(['message' => 'Employee updated successfully', 'data' => $input]);
+            echo json_encode(['message' => 'PDS updated successfully']);
         } else {
             http_response_code(500); // Internal Server Error
             echo json_encode(['error' => 'Failed to update employee']);

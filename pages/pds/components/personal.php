@@ -83,6 +83,60 @@
             </label>
             <input type="text" id="bloodtype" class="input input-bordered w-full" />
         </div>
+
+        <div class="col-span-full mt-4">
+            <h1 class="text-xl font-bold">Address</h1>
+        </div>
+
+        <!-- Residential Address -->
+        <div class="col-span-full">
+            <h2 class="font-bold text-lg mb-2">Residential Address</h2>
+        </div>
+        <div class="form-control col-span-full">
+            <label class="label">
+                <span class="label-text">Address</span>
+            </label>
+            <input type="text" id="residential_address" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Zip Code</span>
+            </label>
+            <input type="text" id="residential_zipcode" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Telephone No.</span>
+            </label>
+            <input type="text" id="residential_telno" class="input input-bordered w-full" />
+        </div>
+
+        <!-- Permanent Address -->
+        <div class="col-span-full mt-4 flex items-center gap-2">
+            <h2 class="font-bold text-lg">Permanent Address</h2>
+            <label class="cursor-pointer label">
+                <input type="checkbox" id="same_address_checkbox" class="checkbox checkbox-sm" />
+                <span class="label-text ml-2">Same as Residential Address</span>
+            </label>
+        </div>
+        <div class="form-control col-span-full">
+            <label class="label">
+                <span class="label-text">Address</span>
+            </label>
+            <input type="text" id="permanent_address" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Zip Code</span>
+            </label>
+            <input type="text" id="permanent_zipcode" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text">Telephone No.</span>
+            </label>
+            <input type="text" id="permanent_telno" class="input input-bordered w-full" />
+        </div>
     </div>
 </div>
 <div class="mt-4 flex justify-end">
@@ -111,10 +165,45 @@
                 _id('height').value = data.height || '';
                 _id('weight').value = data.weight || '';
                 _id('bloodtype').value = data.bloodtype || '';
+                _id('residential_address').value = data.residential_address || '';
+                _id('residential_zipcode').value = data.residential_zipcode || data.reszipcode || '';
+                _id('residential_telno').value = data.residential_telno || '';
+                _id('permanent_address').value = data.permanent_address || '';
+                _id('permanent_zipcode').value = data.permanent_zipcode || '';
+                _id('permanent_telno').value = data.permanent_telno || '';
+
             }
         } catch (e) {
             console.error("Error fetching PDS data", e);
         }
+
+        // Checkbox logic
+        const syncAddress = () => {
+            if (_id('same_address_checkbox').checked) {
+                _id('permanent_address').value = _id('residential_address').value;
+                _id('permanent_zipcode').value = _id('residential_zipcode').value;
+                _id('permanent_telno').value = _id('residential_telno').value;
+
+                // Disable permanent fields when synced
+                _id('permanent_address').disabled = true;
+                _id('permanent_zipcode').disabled = true;
+                _id('permanent_telno').disabled = true;
+            } else {
+                // Enable back
+                _id('permanent_address').disabled = false;
+                _id('permanent_zipcode').disabled = false;
+                _id('permanent_telno').disabled = false;
+            }
+        };
+
+        _id('same_address_checkbox').addEventListener('change', syncAddress);
+
+        // Auto-update if checked
+        ['residential_address', 'residential_zipcode', 'residential_telno'].forEach(id => {
+            _id(id).addEventListener('input', () => {
+                if (_id('same_address_checkbox').checked) syncAddress();
+            });
+        });
 
         // Save data
         _id('btn-save-personal').addEventListener('click', async () => {
@@ -132,7 +221,14 @@
                 height: _id('height').value,
                 weight: _id('weight').value,
                 bloodtype: _id('bloodtype').value,
-                blood_type: _id('bloodtype').value
+                blood_type: _id('bloodtype').value,
+                residential_address: _id('residential_address').value,
+                residential_zipcode: _id('residential_zipcode').value,
+                reszipcode: _id('residential_zipcode').value,
+                residential_telno: _id('residential_telno').value,
+                permanent_address: _id('permanent_address').value,
+                permanent_zipcode: _id('permanent_zipcode').value,
+                permanent_telno: _id('permanent_telno').value
             };
 
             try {

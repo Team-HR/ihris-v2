@@ -28,7 +28,7 @@
             <div class="card w-full bg-base-100 border border-base-content/10">
                 <div class="card-body">
                     <div class="join">
-                        <a href="?page=pds&subpage=bio" class="btn join-item btn-ghost <?php echo sub_active_class('bio', $subpage); ?>">Bio</a>
+                        <a href="?page=pds&subpage=personal" class="btn join-item btn-ghost <?php echo sub_active_class('personal', $subpage); ?>">Personal</a>
                         <a href="?page=pds&subpage=professional" class="btn join-item btn-ghost <?php echo sub_active_class('professional', $subpage); ?>">Professional</a>
                         <a href="?page=pds&subpage=family" class="btn join-item btn-ghost <?php echo sub_active_class('family', $subpage); ?>">Family</a>
                         <a href="?page=pds&subpage=education" class="btn join-item btn-ghost <?php echo sub_active_class('education', $subpage); ?>">Education</a>
@@ -39,8 +39,8 @@
                     <?php
                     // Display subpage content
                     switch ($subpage) {
-                        case 'bio':
-                            include "./pages/pds/components/bio.php";
+                        case 'personal':
+                            include "./pages/pds/components/personal.php";
                             break;
                         case 'professional':
                             include "./pages/pds/components/professional.php";
@@ -55,7 +55,7 @@
                             include "./pages/pds/components/eligibility.php";
                             break;
                         default:
-                            include "./pages/pds/components/bio.php";
+                            include "./pages/pds/components/personal.php";
                     }
                     ?>
                 </div>
