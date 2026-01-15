@@ -157,7 +157,7 @@
 <script>
     (async () => {
         const _id = (id) => document.getElementById(id);
-        const empid = 3977; // Fixed as per requirement
+        const empid = 24; // Fixed as per requirement
 
         // Fetch data
         try {

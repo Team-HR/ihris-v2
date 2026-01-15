@@ -39,7 +39,7 @@
 <script>
     (async () => {
         const _id = (id) => document.getElementById(id);
-        const empid = 3977; // Fixed as per requirement
+        const empid = 24; // Fixed as per requirement
 
         // Fetch data
         try {
@@ -63,11 +63,10 @@
                 pagibigno: _id('pagibigno').value,
                 philhealthno: _id('philhealthno').value,
                 sssno: _id('sssno').value,
-                tinno: _id('tinno').value,
+                tinno: _id('tinno').value
             };
             try {
                 const res = await api.put(`/api/pds?empid=${empid}&type=professional`, payload);
-                console.log("Saved:", res);
                 alert("Professional information saved successfully!");
             } catch (e) {
                 console.error("Error saving PDS data", e);

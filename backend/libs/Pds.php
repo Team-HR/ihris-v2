@@ -25,105 +25,7 @@ class Pds
         }
     }
 
-
-    // public function updatedPds($empid, $data)
-    // {
-    //     $query = "UPDATE `employee_list` SET 
-    //         `objid` = :objid, 
-    //         `dtrno` = :dtrno, 
-    //         `empno` = :empno, 
-    //         `lname` = :lname, 
-    //         `fname` = :fname, 
-    //         `mname` = :mname, 
-    //         `extname` = :extname, 
-    //         `apptstatus_objid` = :apptstatus_objid, 
-    //         `position` = :position, 
-    //         `officeposition_objid` = :officeposition_objid, 
-    //         `department_objid` = :department_objid, 
-    //         `officesection_objid` = :officesection_objid, 
-    //         `assignedoffice_objid` = :assignedoffice_objid, 
-    //         `active` = :active, 
-    //         `emp_no` = :emp_no, 
-    //         `dept_id` = :dept_id, 
-    //         `position_id` = :position_id, 
-    //         `section_id` = :section_id, 
-    //         `assigned_officeid` = :assigned_officeid, 
-    //         `birthdate` = :birthdate, 
-    //         `placebirth` = :placebirth, 
-    //         `birth_date` = :birth_date, 
-    //         `place_birth` = :place_birth, 
-    //         `gender` = :gender, 
-    //         `sex` = :sex, 
-    //         `civilstatus` = :civilstatus, 
-    //         `civil_status` = :civil_status, 
-    //         `citizen_objid` = :citizen_objid, 
-    //         `citizenship` = :citizenship, 
-    //         `height` = :height, 
-    //         `weight` = :weight, 
-    //         `bloodtype` = :bloodtype, 
-    //         `blood_type` = :blood_type, 
-    //         `gsisidno` = :gsisidno, 
-    //         `gsisid_no` = :gsisid_no, 
-    //         `pagibigno` = :pagibigno, 
-    //         `pagibig_no` = :pagibig_no, 
-    //         `philhealthno` = :philhealthno, 
-    //         `philhealth_no` = :philhealth_no, 
-    //         `sssno` = :sssno, 
-    //         `sss_no` = :sss_no, 
-    //         `residential_address` = :residential_address, 
-    //         `residential_zipcode` = :residential_zipcode, 
-    //         `reszipcode` = :reszipcode, 
-    //         `residential_telno` = :residential_telno, 
-    //         `permanent_address` = :permanent_address, 
-    //         `permanent_zipcode` = :permanent_zipcode, 
-    //         `permanent_telno` = :permanent_telno, 
-    //         `emailaddress` = :emailaddress, 
-    //         `email_address` = :email_address, 
-    //         `cellphone_no` = :cellphone_no, 
-    //         `agency_employee_no` = :agency_employee_no, 
-    //         `tinno` = :tinno, 
-    //         `tin_no` = :tin_no, 
-    //         `orig_appt_date` = :orig_appt_date, 
-    //         `origapptdate` = :origapptdate, 
-    //         `lastpromo_date` = :lastpromo_date, 
-    //         `lastpromodate` = :lastpromodate, 
-    //         `years_service` = :years_service, 
-    //         `salary_id` = :salary_id, 
-    //         `salary_objid` = :salary_objid, 
-    //         `step_no` = :step_no, 
-    //         `stepno` = :stepno, 
-    //         `contact_person` = :contact_person, 
-    //         `contact_no` = :contact_no, 
-    //         `sectionid` = :sectionid, 
-    //         `reshouseno` = :reshouseno, 
-    //         `resstreet` = :resstreet, 
-    //         `ressubdivision` = :ressubdivision, 
-    //         `resbarangay` = :resbarangay, 
-    //         `rescity` = :rescity, 
-    //         `resprovince` = :resprovince, 
-    //         `permhouseno` = :permhouseno, 
-    //         `permstreet` = :permstreet, 
-    //         `permsubdivision` = :permsubdivision, 
-    //         `permbarangay` = :permbarangay, 
-    //         `permcity` = :permcity, 
-    //         `permprovince` = :permprovince, 
-    //         `permzipcode` = :permzipcode, 
-    //         `permtelno` = :permtelno, 
-    //         `cellno` = :cellno
-    //         WHERE `empid` = :empid";
-
-    //     try {
-    //         $stmt = $this->conn->prepare($query);
-    //         $data['empid'] = $empid;
-    //         return $stmt->execute($data);
-    //     } catch (PDOException $e) {
-    //         echo "Error: " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
-
-
-    public function updateBio($empid, $data)
+    public function updatePersonal($empid, $data)
     {
         $query = "UPDATE `employee_list` SET 
             `lname` = :lname, 
@@ -137,8 +39,6 @@ class Pds
             `gender` = :gender,
             `sex` = :sex,
             `civilstatus` = :civilstatus,
-            -- `civil_status` = :civil_status
-            -- `citizen_objid` = :citizen_objid, 
             `citizenship` = :citizenship,
             `height` = :height, 
             `weight` = :weight, 
@@ -151,30 +51,9 @@ class Pds
             `residential_telno` = :residential_telno, 
             `permanent_address` = :permanent_address, 
             `permanent_zipcode` = :permanent_zipcode, 
-            `permanent_telno` = :permanent_telno
-            -- `emailaddress` = :emailaddress, 
-            -- `email_address` = :email_address, 
-            -- `cellphone_no` = :cellphone_no, 
-            -- `agency_employee_no` = :agency_employee_no, 
-            -- `tinno` = :tinno, 
-            -- `tin_no` = :tin_no, 
+            `permanent_telno` = :permanent_telno,
             `contact_person` = :contact_person, 
-            `contact_no` = :contact_no, 
-            -- `reshouseno` = :reshouseno, 
-            -- `resstreet` = :resstreet, 
-            -- `ressubdivision` = :ressubdivision, 
-            -- `resbarangay` = :resbarangay, 
-            -- `rescity` = :rescity, 
-            -- `resprovince` = :resprovince, 
-            -- `permhouseno` = :permhouseno, 
-            -- `permstreet` = :permstreet, 
-            -- `permsubdivision` = :permsubdivision, 
-            -- `permbarangay` = :permbarangay, 
-            -- `permcity` = :permcity, 
-            -- `permprovince` = :permprovince, 
-            -- `permzipcode` = :permzipcode, 
-            -- `permtelno` = :permtelno, 
-            -- `cellno` = :cellno
+            `contact_no` = :contact_no
             WHERE `empid` = :empid";
 
         try {
@@ -189,12 +68,44 @@ class Pds
 
     public function updateProfessional($empid, $data)
     {
-        $query = "UPDATE `employee_list` SET 
+        // Check if empid exists
+        $checkQuery = "SELECT count(*) FROM `employee_list` WHERE `empid` = :empid";
+        $stmt = $this->conn->prepare($checkQuery);
+        $stmt->execute(['empid' => $empid]);
+        $count = $stmt->fetchColumn();
+
+        if ($count > 0) {
+            $query = "UPDATE `employee_list` SET 
             `gsisidno` = :gsisidno, 
             `pagibigno` = :pagibigno, 
             `philhealthno` = :philhealthno, 
             `sssno` = :sssno,
             `tinno` = :tinno
+            WHERE `empid` = :empid";
+        } else {
+            $query = "INSERT INTO `employee_list` 
+            (`empid`, `gsisidno`, `pagibigno`, `philhealthno`, `sssno`, `tinno`) 
+            VALUES (:empid, :gsisidno, :pagibigno, :philhealthno, :sssno, :tinno)";
+        }
+
+        try {
+            $stmt = $this->conn->prepare($query);
+            $data['empid'] = $empid;
+            return $stmt->execute($data);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+
+    public function updateFamily($empid, $data)
+    {
+        $query = "UPDATE `employee_family_background` SET 
+            `spouse_lname` = :spouse_lname, 
+            `spouse_fname` = :spouse_fname, 
+            `spouse_mname` = :spouse_mname, 
+            `spouseextname` = :spouse_extname
             WHERE `empid` = :empid";
 
         try {

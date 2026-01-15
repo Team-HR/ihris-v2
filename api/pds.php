@@ -66,9 +66,11 @@ try {
         $success = false;
         if ($type === 'professional') {
             $success = $pds->updateProfessional($empid, $input);
+        } else if ($type === 'family') {
+            $success = $pds->updateFamily($empid, $input);
         } else {
             // Default to Bio/Personal info
-            $success = $pds->updateBio($empid, $input);
+            $success = $pds->updatePersonal($empid, $input);
         }
 
         if ($success) {
