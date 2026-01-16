@@ -27,12 +27,12 @@
             ?>
             <div class="card w-full bg-base-100 border border-base-content/10">
                 <div class="card-body">
-                    <div class="join">
-                        <a href="?page=pds&subpage=personal" class="btn join-item btn-ghost <?php echo sub_active_class('personal', $subpage); ?>">Personal</a>
-                        <a href="?page=pds&subpage=professional" class="btn join-item btn-ghost <?php echo sub_active_class('professional', $subpage); ?>">Professional</a>
-                        <a href="?page=pds&subpage=family" class="btn join-item btn-ghost <?php echo sub_active_class('family', $subpage); ?>">Family</a>
-                        <a href="?page=pds&subpage=education" class="btn join-item btn-ghost <?php echo sub_active_class('education', $subpage); ?>">Education</a>
-                        <a href="?page=pds&subpage=eligibility" class="btn join-item btn-ghost <?php echo sub_active_class('eligibility', $subpage); ?>">Eligibility</a>
+                    <div class="join flex-wrap">
+                        <a href="?page=pds&subpage=personal" class="btn join-item btn-ghost w-full sm:w-auto btn-sm sm:btn-md <?php echo sub_active_class('personal', $subpage); ?>">Personal</a>
+                        <a href="?page=pds&subpage=professional" class="btn join-item btn-ghost w-full sm:w-auto btn-sm sm:btn-md <?php echo sub_active_class('professional', $subpage); ?>">Professional</a>
+                        <a href="?page=pds&subpage=family" class="btn join-item btn-ghost w-full sm:w-auto btn-sm sm:btn-md <?php echo sub_active_class('family', $subpage); ?>">Family</a>
+                        <a href="?page=pds&subpage=education" class="btn join-item btn-ghost w-full sm:w-auto btn-sm sm:btn-md <?php echo sub_active_class('education', $subpage); ?>">Education</a>
+                        <a href="?page=pds&subpage=eligibility" class="btn join-item btn-ghost w-full sm:w-auto btn-sm sm:btn-md <?php echo sub_active_class('eligibility', $subpage); ?>">Eligibility</a>
                     </div>
                     <div class="divider m-0"></div>
 
