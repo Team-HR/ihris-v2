@@ -52,6 +52,15 @@
             <input type="text" id="s_telephone_no" class="input input-bordered w-full" placeholder="..." />
         </div>
 
+        <div class="col-span-full">
+            <h2 class="font-bold text-lg mb-2">Children Information</h2>
+            <div id="children_container" class="space-y-4">
+                <!-- Dynamic rows will be added here -->
+            </div>
+            <button id="btn-add-child" class="btn btn-sm btn-secondary mt-4">+ Add Child</button>
+        </div>
+
+
         <!-- father and mother information -->
 
         <div class="col-span-full">
@@ -116,6 +125,42 @@
         const _id = (id) => document.getElementById(id);
         const empid = 24; // Fixed as per requirement
 
+        const addChildRow = (name = '', dob = '') => {
+            const container = _id('children_container');
+            const index = container.children.length;
+            const div = document.createElement('div');
+            div.className = 'relative border border-base-300 rounded-lg p-4 bg-base-100';
+            div.innerHTML = `
+                <button class="absolute top-2 right-2 btn btn-xs btn-circle text-red-600 border-none remove-child">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Name of Child</span>
+                        </label>
+                        <input type="text" class="input input-bordered w-full child-name" value="${name}" />
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Date of Birth</span>
+                        </label>
+                        <input type="date" class="input input-bordered w-full child-dob" value="${dob}" />
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+
+            div.querySelector('.remove-child').addEventListener('click', () => {
+                div.remove();
+            });
+        };
+
+        _id('btn-add-child').addEventListener('click', () => addChildRow());
+
         // Fetch data
         try {
             const data = await api.get(`/api/pds?empid=${empid}&type=family`);
@@ -136,6 +181,24 @@
                 _id('mother_lname').value = data.mother_lname || '';
                 _id('mother_fname').value = data.mother_fname || '';
                 _id('mother_mname').value = data.mother_mname || '';
+
+                // Handle children
+                const names = (data.name_child || '').split('/').filter(n => n);
+                const dobs = (data.date_birth || '').split(',').filter(d => d);
+
+                // Assuming parity in length, or just loop max
+                const maxLen = Math.max(names.length, dobs.length);
+                for (let i = 0; i < maxLen; i++) {
+                    // Convert mm/dd/yyyy to yyyy-mm-dd for input
+                    let dob = dobs[i] || '';
+                    if (dob) {
+                        const parts = dob.trim().split('/');
+                        if (parts.length === 3) {
+                            dob = `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
+                        }
+                    }
+                    addChildRow(names[i] || '', dob);
+                }
             }
         } catch (e) {
             console.error("Error fetching PDS data", e);
@@ -144,6 +207,21 @@
 
         // Save data
         _id('btn-save-family').addEventListener('click', async () => {
+            // Collect children data
+            const childNameInputs = document.querySelectorAll('.child-name');
+            const childDobInputs = document.querySelectorAll('.child-dob');
+
+            const childNames = Array.from(childNameInputs).map(i => i.value).join('/');
+            const childDobs = Array.from(childDobInputs).map(i => {
+                const val = i.value; // yyyy-mm-dd
+                if (!val) return '';
+                const parts = val.split('-');
+                if (parts.length === 3) {
+                    return `${parts[1]}/${parts[2]}/${parts[0]}`; // mm/dd/yyyy
+                }
+                return val;
+            }).join(',');
+
             const payload = {
                 spouse_lname: _id('spouse_lname').value,
                 spouse_fname: _id('spouse_fname').value,
@@ -160,6 +238,8 @@
                 mother_lname: _id('mother_lname').value,
                 mother_fname: _id('mother_fname').value,
                 mother_mname: _id('mother_mname').value,
+                name_child: childNames,
+                date_birth: childDobs
             };
 
             try {

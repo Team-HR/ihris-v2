@@ -129,7 +129,9 @@ class Pds
             `fatherextname` = :fatherextname,
             `mother_lname` = :mother_lname,
             `mother_fname` = :mother_fname,
-            `mother_mname` = :mother_mname
+            `mother_mname` = :mother_mname,
+            `name_child` = :name_child,
+            `date_birth` = :date_birth
             WHERE `empid` = :empid";
         try {
             $stmt = $this->conn->prepare($query);
