@@ -37,6 +37,16 @@ const employees = await api.get("/api/employees");
 const employee = await api.get("/api/employees", { empid: 123 });
 ```
 
+### Stylesheet
+
+The project uses Tailwind and DaisyUI for styling. The styles are defined in the `assets/css/output.css` file.
+
+To compile classes to output.css, run the command below while in the root directory.
+
+```bash
+npx @tailwindcss/cli -i ./assets/css/global.css -o ./assets/css/output.css --watch
+```
+
 ### Documentation
 
 For full usage examples (GET, POST, PUT, DELETE) and more details, please refer to the [API Wrapper Documentation](assets/js/README.md).
