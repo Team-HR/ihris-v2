@@ -1,6 +1,7 @@
 <?php
 // Determine current route/page (fallback to 'home' if not set)
-$path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+// $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+$path = $_GET['page'] ?? 'home';
 $current_page = $path ?: 'home';
 
 // Helper to add highlight class if active
@@ -90,5 +91,7 @@ function is_details_open(array $pages, $current_page)
                 </ul>
             </details>
         </li>
+        <li><a class="<?php echo is_active_class('pds', $current_page) ?>" href="?page=pds">PDS (remove after test)</a></li>
+        <li><a class="<?php echo is_active_class('setup', $current_page) ?>" href="?page=setup">Setup</a></li>
     </div>
 </ul>

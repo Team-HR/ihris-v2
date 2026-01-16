@@ -14,17 +14,25 @@ include_once "./includes/header.php";
     </div>
 
     <?php
-    $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+    // echo "<h1>TEST: " . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) . "</h1>";
+    // $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+    $path = $_GET['page'] ?? 'home';
 
     switch ($path) {
       case 'employee/list':
         include './pages/employees/EmployeeList.php';
         break;
-
       case 'about':
         include './pages/about.php';
         break;
-
+      case 'setup':
+        include "./pages/setup/setup.php";
+        break;
+      case 'pds':
+        include "./pages/pds/pds.php";
+        break;
       default:
         include './pages/home/home.php';
     }

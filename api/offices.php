@@ -1,19 +1,5 @@
 <?php
 
-/**
- * 
- * @param int $empid
- * @return json
- * 
- * URLS:
- *  /api/employees?empid=<empid>
- *  /api/employees
- * 
- * USAGE (e.g. in js):
- * See API Wrapper in README.md from assets/js/README.md
- * 
- */
-
 // Set headers for JSON response
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -21,38 +7,37 @@ header('Access-Control-Allow-Origin: *');
 // Set current working directory to project root to allow relative includes from backend/
 chdir(__DIR__ . '/../');
 
-require_once 'backend/libs/EmployeeList.php';
-
+require_once 'backend/libs/Office.php';
 try {
-    // Initialize EmployeeList
-    $employeeList = new EmployeeList();
+    // Initialize Office
+    $office = new Office();
 
-    // Check if 'id' parameter is present
-    if (isset($_GET['empid'])) {
-        $empid = filter_input(INPUT_GET, 'empid', FILTER_VALIDATE_INT);
+    // Check if 'objid' parameter is present
+    if (isset($_GET['objid'])) {
+        $objid = filter_input(INPUT_GET, 'objid', FILTER_VALIDATE_INT);
 
-        if ($empid === false || $empid === null) {
+        if ($objid === false || $objid === null) {
             http_response_code(400); // Bad Request
             echo json_encode(['error' => 'Invalid ID parameter']);
             exit;
         }
 
-        $employee = $employeeList->getEmployee($empid);
+        $office = $office->getOffice($objid);
 
-        if ($employee) {
-            echo json_encode($employee);
+        if ($office) {
+            echo json_encode($office);
         } else {
             http_response_code(404); // Not Found
-            echo json_encode(['error' => 'Employee not found']);
+            echo json_encode(['error' => 'Office not found']);
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
         // Parse input stream for PUT data
         $input = json_decode(file_get_contents('php://input'), true);
 
-        // Check if 'empid' parameter is present in query string
-        $empid = filter_input(INPUT_GET, 'empid', FILTER_VALIDATE_INT);
+        // Check if 'objid' parameter is present in query string
+        $objid = filter_input(INPUT_GET, 'objid', FILTER_VALIDATE_INT);
 
-        if ($empid === false || $empid === null) {
+        if ($objid === false || $objid === null) {
             http_response_code(400); // Bad Request
             echo json_encode(['error' => 'Invalid ID parameter']);
             exit;
@@ -64,16 +49,16 @@ try {
             exit;
         }
 
-        if ($employeeList->updateEmployee($empid, $input)) {
-            echo json_encode(['message' => 'Employee updated successfully']);
+        if ($office->updateOffice($objid, $input)) {
+            echo json_encode(['message' => 'Office updated successfully']);
         } else {
             http_response_code(500); // Internal Server Error
-            echo json_encode(['error' => 'Failed to update employee']);
+            echo json_encode(['error' => 'Failed to update office']);
         }
     } else {
-        // Fetch all employees
-        $employees = $employeeList->getEmployees();
-        echo json_encode($employees);
+        // Fetch all offices
+        $offices = $office->getOffices();
+        echo json_encode($offices);
     }
 } catch (Exception $e) {
     http_response_code(500); // Internal Server Error
