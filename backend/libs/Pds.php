@@ -39,6 +39,34 @@ class Pds
         }
     }
 
+    public function getEducation($empid)
+    {
+        $query = "SELECT * FROM `employee_educ_background` WHERE `empid` = :empid";
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(['empid' => $empid]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result ?: [];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
+    }
+
+    public function getEligibility($empid)
+    {
+        $query = "SELECT * FROM `employee_civil_service` WHERE `empid` = :empid";
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(['empid' => $empid]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result ?: [];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
+    }
+
     public function updatePersonal($empid, $data)
     {
         $query = "UPDATE `employee_list` SET 
@@ -138,6 +166,44 @@ class Pds
             $data['empid'] = $empid;
             return $stmt->execute($data);
         } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function updateEligibility($empid, $data)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // Delete existing records
+            $deleteQuery = "DELETE FROM `employee_civil_service` WHERE `empid` = :empid";
+            $stmt = $this->conn->prepare($deleteQuery);
+            $stmt->execute(['empid' => $empid]);
+
+            // Insert new records
+            if (!empty($data) && is_array($data)) {
+                $insertQuery = "INSERT INTO `employee_civil_service` 
+                    (`empid`, `eligibility`, `rating`, `examdate`, `examplace`, `licenseno`, `validitydate`) 
+                    VALUES (:empid, :eligibility, :rating, :examdate, :examplace, :licenseno, :validitydate)";
+                $stmt = $this->conn->prepare($insertQuery);
+                foreach ($data as $row) {
+                    $stmt->execute([
+                        'empid' => $empid,
+                        'eligibility' => $row['eligibility'] ?? '',
+                        'rating' => $row['rating'] ?? '',
+                        'examdate' => $row['examdate'] ?? '',
+                        'examplace' => $row['examplace'] ?? '',
+                        'licenseno' => $row['licenseno'] ?? '',
+                        'validitydate' => $row['validitydate'] ?? ''
+                    ]);
+                }
+            }
+
+            $this->conn->commit();
+            return true;
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
             echo "Error: " . $e->getMessage();
             return false;
         }
