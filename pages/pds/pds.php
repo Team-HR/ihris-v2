@@ -2,13 +2,13 @@
     <div class="card-body p-0">
 
         <!-- WALLPAPER -->
-        <div class="w-full h-24 bg-linear-to-r from-primary to-accent rounded"></div>
+        <!-- <div class="w-full h-24 bg-linear-to-r from-primary to-accent rounded"></div> -->
 
         <div class="sm:p-8 p-2 relative">
 
             <div class="block sm:mt-4 mt-2 mb-4">
                 <div class="flex sm:flex-row flex-col sm:gap-4 gap-1 sm:items-center">
-                    <h1 class="sm:text-3xl text-xl font-bold">PDS</h1>
+                    <h1 class="sm:text-3xl text-xl font-bold">Personal Data Sheet</h1>
                 </div>
                 <h1 class="sm:text-lg mt-2 flex items-center gap-2">
                     <!-- Description here -->

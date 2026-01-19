@@ -31,6 +31,10 @@ try {
 
             if ($type === 'family') {
                 $pds = $pds->getFamily($empid);
+            } else if ($type === 'education') {
+                $pds = $pds->getEducation($empid);
+            } else if ($type === 'eligibility') {
+                $pds = $pds->getEligibility($empid);
             } else {
                 $pds = $pds->getPds($empid);
             }
@@ -74,6 +78,8 @@ try {
             $success = $pds->updateProfessional($empid, $input);
         } else if ($type === 'family') {
             $success = $pds->updateFamily($empid, $input);
+        } else if ($type === 'eligibility') {
+            $success = $pds->updateEligibility($empid, $input);
         } else {
             // Default to Bio/Personal info
             $success = $pds->updatePersonal($empid, $input);
